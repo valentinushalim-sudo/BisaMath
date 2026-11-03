@@ -1,0 +1,149 @@
+app/page.tsx
+import Navbar from '@/components/layout/Navbar';
+import { CheckCircle, Trophy, ShieldAlert, Star, Flame } from 'lucide-react';
+
+export default function Home() {
+  return (
+    <div className="flex flex-col min-h-full">
+      <Navbar />
+      <main className="flex-1 p-6 lg:p-8 overflow-y-auto">
+        <h1 className="text-2xl md:text-4xl font-black text-slate-800 mb-8 text-center uppercase tracking-wider">
+          Selamat Datang di <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Petualangan Matematikamu!</span>
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-10">
+          
+          {/* KOLOM KIRI (span 3) */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Daily Quests */}
+            <div className="bg-slate-50 p-5 rounded-3xl border-2 border-slate-100 shadow-sm">
+              <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-700">
+                <CheckCircle className="text-green-500" /> Misi Harian
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3 bg-white p-3 rounded-2xl border-2 border-slate-100 shadow-sm">
+                  <div className="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold">✓</div>
+                  <span className="font-bold text-slate-600 text-sm">Login hari ini</span>
+                </li>
+                <li className="flex items-center gap-3 bg-white p-3 rounded-2xl border-2 border-slate-100 shadow-sm opacity-60">
+                  <div className="h-6 w-6 rounded-full border-2 border-slate-300"></div>
+                  <span className="font-bold text-slate-600 text-sm">Selesaikan 3 soal</span>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Boss Battle */}
+            <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-6 rounded-3xl shadow-md text-white relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="font-black text-xl mb-1 flex items-center gap-2">
+                  <ShieldAlert className="text-yellow-300" /> Boss Battle!
+                </h3>
+                <p className="text-sm font-medium text-purple-100">Kalahkan Naga Pecahan di Level 15</p>
+                <button className="mt-4 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold py-2 px-4 rounded-full text-sm transition-colors">
+                  Tantang Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* KOLOM TENGAH - Peta (span 6) */}
+          <div className="lg:col-span-6 bg-blue-50 border-4 border-blue-100 rounded-[2.5rem] p-4 flex flex-col items-center justify-center min-h-[500px] relative shadow-inner">
+            <div className="absolute top-0 -translate-y-1/2 bg-yellow-400 text-yellow-900 font-black px-8 py-3 rounded-full shadow-lg border-4 border-white text-lg tracking-wide uppercase">
+              Petualangan Aljabar
+            </div>
+            {/* Chips */}
+            <div className="absolute top-6 right-6 flex gap-2">
+               <div className="bg-white px-3 py-1 rounded-full font-bold text-yellow-500 flex items-center gap-1 shadow-sm"><Star size={16} fill="currentColor"/> 9</div>
+               <div className="bg-white px-3 py-1 rounded-full font-bold text-amber-500 flex items-center gap-1 shadow-sm"><div className="w-4 h-4 bg-amber-400 rounded-full border border-amber-600"></div> 120</div>
+            </div>
+            
+            {/* Placeholder Peta */}
+            <div className="text-blue-300 flex flex-col items-center">
+              <span className="text-6xl mb-4">🗺️</span>
+              <p className="font-bold text-xl">Area Peta Interaktif</p>
+              <p className="text-sm font-medium mt-1">(Akan dibangun di tahap 3)</p>
+            </div>
+            
+            <div className="absolute bottom-6 bg-white/90 backdrop-blur px-6 py-2 rounded-full font-bold text-blue-800 shadow-md">
+              Level Saat Ini: Level 3
+            </div>
+          </div>
+
+          {/* KOLOM KANAN (span 3) */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Profile Card */}
+            <div className="bg-white p-6 rounded-3xl border-2 border-slate-100 shadow-sm text-center relative overflow-hidden">
+              <div className="h-24 w-24 bg-gradient-to-b from-blue-200 to-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center border-4 border-white shadow-lg relative">
+                <span className="text-4xl">👦</span>
+                <div className="absolute -bottom-2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-white">
+                  Lv. 3
+                </div>
+              </div>
+              <h3 className="font-black text-xl text-slate-800">Siswa Hebat</h3>
+              <p className="text-sm font-bold text-slate-400 mb-4 flex items-center justify-center gap-1">
+                <Flame size={16} className="text-orange-500" /> 3 Hari Streak
+              </p>
+              <div className="text-left mb-1 flex justify-between text-xs font-bold text-slate-500">
+                <span>350 XP</span>
+                <span>500 XP</span>
+              </div>
+              <div className="w-full bg-slate-100 rounded-full h-4 shadow-inner overflow-hidden">
+                <div className="bg-gradient-to-r from-blue-400 to-blue-500 h-full rounded-full w-[70%]"></div>
+              </div>
+            </div>
+            
+            {/* Leaderboard */}
+            <div className="bg-slate-50 p-5 rounded-3xl border-2 border-slate-100 shadow-sm">
+              <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-700">
+                <Trophy className="text-yellow-500" /> Top Learners
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between bg-white p-3 rounded-2xl border-2 border-yellow-100 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <span className="font-black text-yellow-500 text-lg w-4">1</span>
+                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">👧</div>
+                    <span className="font-bold text-slate-700 text-sm">Siti A.</span>
+                  </div>
+                  <span className="font-black text-blue-600 text-sm">1200</span>
+                </div>
+                {/* Current User Highlight */}
+                <div className="flex items-center justify-between bg-blue-100 p-3 rounded-2xl border-2 border-blue-200 shadow-sm ring-2 ring-blue-400 ring-offset-1">
+                  <div className="flex items-center gap-3">
+                    <span className="font-black text-blue-500 text-lg w-4">2</span>
+                    <div className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center">👦</div>
+                    <span className="font-black text-blue-800 text-sm">Kamu</span>
+                  </div>
+                  <span className="font-black text-blue-600 text-sm">950</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* TUGAS GAMIFIKASI */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-black text-slate-800 mb-6 flex items-center gap-2">
+            🎮 Mode Permainan Ekstra
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-orange-50 p-6 rounded-3xl border-4 border-orange-100 hover:border-orange-300 transition-all hover:-translate-y-1 cursor-pointer">
+              <div className="text-4xl mb-3">👾</div>
+              <h4 className="font-black text-orange-600 mb-2 text-lg">Fraction Monsters</h4>
+              <p className="text-sm font-medium text-slate-600">Kalahkan monster dengan pecahan!</p>
+            </div>
+            <div className="bg-emerald-50 p-6 rounded-3xl border-4 border-emerald-100 hover:border-emerald-300 transition-all hover:-translate-y-1 cursor-pointer">
+              <div className="text-4xl mb-3">🛡️</div>
+              <h4 className="font-black text-emerald-600 mb-2 text-lg">Geometry Guardians</h4>
+              <p className="text-sm font-medium text-slate-600">Pertahankan markas bangun datar.</p>
+            </div>
+            <div className="bg-cyan-50 p-6 rounded-3xl border-4 border-cyan-100 hover:border-cyan-300 transition-all hover:-translate-y-1 cursor-pointer">
+              <div className="text-4xl mb-3">🏎️</div>
+              <h4 className="font-black text-cyan-600 mb-2 text-lg">Equation Raceway</h4>
+              <p className="text-sm font-medium text-slate-600">Balapan dengan memecahkan persamaan.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
