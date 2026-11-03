@@ -1,0 +1,85 @@
+lib/mockData.ts
+export interface Question {
+  id: number;
+  question: string;
+  options: string[];
+  correctAnswer: number; // index opsi jawaban yang benar (0-3)
+  explanation: string;
+}
+
+export interface LevelData {
+  id: number;
+  title: string;
+  description: string;
+  material: string; // Penjelasan singkat sebelum kuis
+  questions: Question[];
+}
+
+export const mockLevels: Record<number, LevelData> = {
+  1: {
+    id: 1,
+    title: "Dasar Penjumlahan",
+    description: "Kuasai konsep dasar penjumlahan bilangan bulat.",
+    material: "Penjumlahan adalah proses menggabungkan dua kelompok benda atau lebih menjadi satu kelompok. Contoh: Jika kamu punya 2 apel dan diberi 3 apel lagi, maka total apelmu adalah 2 + 3 = 5.",
+    questions: [
+      {
+        id: 101,
+        question: "Berapakah hasil dari 7 + 8?",
+        options: ["13", "14", "15", "16"],
+        correctAnswer: 2,
+        explanation: "7 ditambahkan dengan 8 menghasilkan 15."
+      },
+      {
+        id: 102,
+        question: "Siti memiliki 12 pensil. Budi memberinya 5 pensil lagi. Berapa total pensil Siti?",
+        options: ["17", "16", "15", "18"],
+        correctAnswer: 0,
+        explanation: "12 + 5 = 17 pensil."
+      }
+    ]
+  },
+  2: {
+    id: 2,
+    title: "Pengurangan Misterius",
+    description: "Pecahkan teka-teki pengurangan bilangan.",
+    material: "Pengurangan adalah proses mengambil sejumlah benda dari kelompok yang ada. Contoh: 10 - 4 = 6.",
+    questions: [
+      {
+        id: 201,
+        question: "Berapakah hasil dari 25 - 9?",
+        options: ["14", "15", "16", "17"],
+        correctAnswer: 2,
+        explanation: "25 dikurangi 9 sama dengan 16."
+      }
+    ]
+  },
+  3: {
+    id: 3,
+    title: "Aljabar Pemula",
+    description: "Temukan nilai variabel x dalam persamaan sederhana.",
+    material: "Aljabar menggunakan simbol (seperti x atau y) untuk menggantikan angka yang belum diketahui. Jika x + 3 = 7, kita cari angka yang jika ditambah 3 menghasilkan 7, yaitu 4.",
+    questions: [
+      {
+        id: 301,
+        question: "Jika x + 5 = 12, berapakah nilai x?",
+        options: ["5", "6", "7", "8"],
+        correctAnswer: 2,
+        explanation: "x = 12 - 5, maka x = 7."
+      },
+      {
+        id: 302,
+        question: "Selesaikan persamaan: 2x = 10. Berapakah nilai x?",
+        options: ["3", "4", "5", "6"],
+        correctAnswer: 2,
+        explanation: "x = 10 / 2, maka x = 5."
+      },
+      {
+        id: 303,
+        question: "Jika 3x - 2 = 10, berapakah nilai x?",
+        options: ["3", "4", "5", "6"],
+        correctAnswer: 1,
+        explanation: "3x = 12, sehingga x = 12 / 3 = 4."
+      }
+    ]
+  }
+};
