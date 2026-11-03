@@ -1,0 +1,127 @@
+components/dashboard/AdventureMap.tsx
+'use client';
+
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Star, Lock, Play, ShieldAlert, X } from 'lucide-react';
+
+const levels = [
+  { id: 1, title: 'Dasar Penjumlahan', x: 20, y: 85, status: 'completed', stars: 3, isBoss: false },
+  { id: 2, title: 'Pengurangan Misterius', x: 50, y: 65, status: 'completed', stars: 2, isBoss: false },
+  { id: 3, title: 'Aljabar Pemula', x: 75, y: 45, status: 'active', stars: 0, isBoss: false },
+  { id: 4, title: 'Pecahan Tersembunyi', x: 40, y: 25, status: 'locked', stars: 0, isBoss: false },
+  { id: 5, title: 'Naga Persamaan (Boss)', x: 80, y: 10, status: 'locked', stars: 0, isBoss: true },
+];
+
+export default function AdventureMap() {
+  const [selectedLevel, setSelectedLevel] = useState<typeof levels[0] | null>(null);
+
+  return (
+    <div className="relative w-full h-[500px] flex items-center justify-center">
+      {/* Garis putus-putus penghubung antar level */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+        <path
+          d="M 20% 85% Q 35% 75% 50% 65% Q 65% 55% 75% 45% Q 60% 35% 40% 25% Q 60% 15% 80% 10%"
+          fill="transparent"
+          stroke="#93C5FD"
+          strokeWidth="4"
+          strokeDasharray="10 10"
+          className="opacity-60"
+        />
+      </svg>
+
+      {/* Titik-titik Level */}
+      {levels.map((level) => {
+        const isActive = level.status === 'active';
+        const isLocked = level.status === 'locked';
+        const isCompleted = level.status === 'completed';
+
+        return (
+          <motion.div
+            key={level.id}
+            className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer flex flex-col items-center"
+            style={{ left: `${level.x}%`, top: `${level.y}%` }}
+            whileHover={!isLocked ? { scale: 1.1 } : {}}
+            onClick={() => !isLocked && setSelectedLevel(level)}
+          >
+            {/* Indikator Bintang */}
+            {!isLocked && !level.isBoss && (
+              <div className="flex gap-0.5 mb-1 bg-white/80 px-2 py-0.5 rounded-full shadow-sm">
+                {[...Array(3)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={12}
+                    className={i < level.stars ? 'text-yellow-400 fill-yellow-400' : 'text-slate-300'}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Ikon Pulau / Level */}
+            <motion.div
+              animate={isActive ? { y: [0, -8, 0] } : {}}
+              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+              className={`w-14 h-14 rounded-full flex items-center justify-center border-4 shadow-lg relative
+                ${isCompleted ? 'bg-green-400 border-green-200 text-white' : ''}
+                ${isActive ? 'bg-yellow-400 border-yellow-100 text-yellow-900 ring-4 ring-yellow-400/30' : ''}
+                ${isLocked ? 'bg-slate-300 border-slate-200 text-slate-500' : ''}
+                ${level.isBoss ? 'bg-purple-600 border-purple-300 text-white !w-16 !h-16' : ''}
+              `}
+            >
+              {isLocked ? (
+                <Lock size={20} />
+              ) : level.isBoss ? (
+                <ShieldAlert size={28} />
+              ) : (
+                <span className="font-black text-xl">{level.id}</span>
+              )}
+            </motion.div>
+            
+            <span className="mt-2 text-xs font-bold text-slate-600 bg-white/90 px-2 py-1 rounded-lg shadow-sm whitespace-nowrap">
+              Level {level.id}
+            </span>
+          </motion.div>
+        );
+      })}
+
+      {/* Modal Level Detail (Native Tailwind) */}
+      {selectedLevel && (
+        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 rounded-[2rem]">
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-white p-6 rounded-3xl w-[90%] max-w-sm shadow-2xl relative border-4 border-slate-100"
+          >
+            <button 
+              onClick={() => setSelectedLevel(null)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-1"
+            >
+              <X size={20} />
+            </button>
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl">
+                {selectedLevel.isBoss ? '🐉' : '🏝️'}
+              </div>
+              <h3 className="text-xl font-black text-slate-800">Level {selectedLevel.id}</h3>
+              <p className="text-slate-500 font-medium">{selectedLevel.title}</p>
+            </div>
+            
+            <div className="flex justify-center gap-2 mb-6">
+              {[...Array(3)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={32}
+                  className={i < selectedLevel.stars ? 'text-yellow-400 fill-yellow-400 drop-shadow-md' : 'text-slate-200'}
+                />
+              ))}
+            </div>
+
+            <button className="w-full bg-blue-500 hover:bg-blue-400 text-white font-black text-lg py-3 rounded-2xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md">
+              <Play fill="currentColor" size={20} /> Mulai Level
+            </button>
+          </motion.div>
+        </div>
+      )}
+    </div>
+  );
+}
