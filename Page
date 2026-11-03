@@ -1,4 +1,6 @@
 app/page.tsx
+import AdventureMap from '@/components/dashboard/AdventureMap';
+
 import Navbar from '@/components/layout/Navbar';
 import { CheckCircle, Trophy, ShieldAlert, Star, Flame } from 'lucide-react';
 
