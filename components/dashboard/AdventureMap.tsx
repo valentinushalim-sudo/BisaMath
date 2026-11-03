@@ -1,20 +1,7 @@
-components/dashboard/AdventureMap.tsx
 'use client';
-// Tambahkan import useRouter di bagian atas
-import { useRouter } from 'next/navigation';
-
-// Di dalam komponen AdventureMap:
-const router = useRouter();
-
-// Ubah tombol "Mulai Level" pada Modal (sekitar baris 108):
-<button 
-  onClick={() => router.push(`/level/${selectedLevel.id}`)}
-  className="w-full bg-blue-500 hover:bg-blue-400 text-white font-black text-lg py-3 rounded-2xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md"
->
-  <Play fill="currentColor" size={20} /> Mulai Level
-</button>
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Star, Lock, Play, ShieldAlert, X } from 'lucide-react';
 
@@ -27,6 +14,7 @@ const levels = [
 ];
 
 export default function AdventureMap() {
+  const router = useRouter();
   const [selectedLevel, setSelectedLevel] = useState<typeof levels[0] | null>(null);
 
   return (
@@ -129,7 +117,9 @@ export default function AdventureMap() {
               ))}
             </div>
 
-            <button className="w-full bg-blue-500 hover:bg-blue-400 text-white font-black text-lg py-3 rounded-2xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md">
+            <button
+              onClick={() => router.push(`/level/${selectedLevel.id}`)}
+              className="w-full bg-blue-500 hover:bg-blue-400 text-white font-black text-lg py-3 rounded-2xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md">
               <Play fill="currentColor" size={20} /> Mulai Level
             </button>
           </motion.div>

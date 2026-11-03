@@ -1,4 +1,3 @@
-components/layout/Navbar.tsx
 import Link from 'next/link';
 import { GraduationCap, Bell, User } from 'lucide-react';
 

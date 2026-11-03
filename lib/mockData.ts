@@ -1,4 +1,3 @@
-lib/mockData.ts
 export interface Question {
   id: number;
   question: string;

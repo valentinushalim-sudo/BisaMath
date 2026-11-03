@@ -1,4 +1,3 @@
-app/page.tsx
 import AdventureMap from '@/components/dashboard/AdventureMap';
 
 import Navbar from '@/components/layout/Navbar';
@@ -66,18 +65,6 @@ export default function Home() {
   </div>
 </div>
 
-            
-            {/* Placeholder Peta */}
-            <div className="text-blue-300 flex flex-col items-center">
-              <span className="text-6xl mb-4">🗺️</span>
-              <p className="font-bold text-xl">Area Peta Interaktif</p>
-              <p className="text-sm font-medium mt-1">(Akan dibangun di tahap 3)</p>
-            </div>
-            
-            <div className="absolute bottom-6 bg-white/90 backdrop-blur px-6 py-2 rounded-full font-bold text-blue-800 shadow-md">
-              Level Saat Ini: Level 3
-            </div>
-          </div>
 
           {/* KOLOM KANAN (span 3) */}
           <div className="lg:col-span-3 space-y-6">
